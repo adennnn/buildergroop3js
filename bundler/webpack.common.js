@@ -76,6 +76,12 @@ module.exports = {
                 {
                     filename: 'assets/fonts/[hash][ext]'
                 }
+            },
+
+            //Models
+            {
+                test: /\.(gltf|obj|fbx)$/i,
+                loader: 'file-loader',
             }
         ]
     }

@@ -1,11 +1,22 @@
 import './style.css'
 import * as THREE from 'three'
 import * as dat from 'lil-gui'
-import gsap from 'gsap'
+import gsap from 'gsap';
+import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader.js"
+import hammer from 'models/hammer.gltf'
+import {DragControls} from "three/examples/jsm/controls/DragControls.js"
 
+
+
+
+// Global Variabiles
+
+const speed = 0.01;
+let direction = "down";
 /**
  * Debug
  */
+
 const gui = new dat.GUI()
 
 const parameters = {
@@ -44,40 +55,48 @@ const material = new THREE.MeshToonMaterial({
 })
 
 // Objects
-const objectsDistance = 4
-const mesh1 = new THREE.Mesh(
-    new THREE.TorusGeometry(1, 0.4, 16, 60),
-    material
-)
+const objectsDistance = 4;
 
+let mesh1, sectionMeshes;
+const gltfLoader = new GLTFLoader();
 
-mesh1.position.x = 2
+gltfLoader.load(hammer, (obj) => {
 
-mesh1.position.y = - objectsDistance * 0
+ mesh1 = obj.scene.children[0].clone();
+ mesh1.position.x = 2;
+ mesh1.position.y = 0;
+ mesh1.rotation.set(Math.PI/2,0,-0.3);
+ mesh1.material.color.set(0xffffff);
+ scene.add(mesh1);
+ sectionMeshes = [ mesh1 ];
+ mesh1.scale.set(30,30,30);
+ 
+// const controls = new DragControls( [mesh1], camera, renderer.domElement );
 
+})
 
-scene.add(mesh1)
-
-const sectionMeshes = [ mesh1 ]
 
 /**
  * Lights
  */
 const directionalLight = new THREE.DirectionalLight('#ffffff', 1)
-directionalLight.position.set(1, 1, 0)
+directionalLight.position.set(-1, 1, 0)
 scene.add(directionalLight)
 
+const pointlight = new THREE.PointLight( "#ffffff", 2)
+pointlight.position.set(0,0,5);
+scene.add(pointlight);
 /**
  * Particles
  */
 // Geometry
-const particlesCount = 2300
-const positions = new Float32Array(particlesCount * 3)
+const particlesCount = 2300;
+const positions = new Float32Array(particlesCount * 3);
 
 for(let i = 0; i < particlesCount; i++)
 {
     positions[i * 3 + 0] = (Math.random() - 0.5) * 10
-    positions[i * 3 + 1] = objectsDistance * 0.5 - Math.random() * objectsDistance * sectionMeshes.length
+    positions[i * 3 + 1] = objectsDistance * 0.5 - Math.random() * objectsDistance * 1
     positions[i * 3 + 2] = (Math.random() - 0.5) * 10
 }
 
@@ -140,33 +159,35 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
+
 /**
  * Scroll
  */
 let scrollY = window.scrollY
-let currentSection = 0
+
 
 window.addEventListener('scroll', () =>
 {
     scrollY = window.scrollY
-    const newSection = Math.round(scrollY / sizes.height)
-
-    if(newSection != currentSection)
-    {
-        currentSection = newSection
-
-        gsap.to(
-            sectionMeshes[currentSection].rotation,
-            {
-                duration: 1.5,
-                ease: 'power2.inOut',
-                x: '+=6',
-                y: '+=3',
-                z: '+=1.5'
-            }
-        )
-    }
 })
+//     const newSection = Math.round(scrollY / sizes.height)
+
+//     if(newSection != currentSection)
+//     {
+//         currentSection = newSection
+
+//         gsap.to(
+//             sectionMeshes[currentSection].rotation,
+//             {
+//                 duration: 1.5,
+//                 ease: 'power2.inOut',
+//                 x: '+=6',
+//                 y: '+=3',
+//                 z: '+=1.5'
+//             }
+//         )
+//     }
+// })
 
 /**
  * Cursor
@@ -189,6 +210,7 @@ let previousTime = 0
 
 const tick = () =>
 {
+
     const elapsedTime = clock.getElapsedTime()
     const deltaTime = elapsedTime - previousTime
     previousTime = elapsedTime
@@ -201,12 +223,28 @@ const tick = () =>
     cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 5 * deltaTime
     cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 5 * deltaTime
 
+    if(sectionMeshes){
     // Animate meshes
+    
+
     for(const mesh of sectionMeshes)
     {
-        mesh.rotation.x += deltaTime * 0.1
-        mesh.rotation.y += deltaTime * 0.12
+        if(mesh.rotation.y <= Math.PI/3 && direction === "down")
+        mesh.rotation.y += speed;
+        else if(mesh.rotation.y > Math.PI/3 && direction === "down")
+        {
+        direction = "up";
+        mesh.rotation.y -= speed;
+        }
+        else if(mesh.rotation.y <= Math.PI/3 && mesh.rotation.y > 0 && direction === "up")
+        mesh.rotation.y -= speed;
+        else if(mesh.rotation.y <= 0 && direction === "up")
+        {
+         direction = "down";
+         mesh.rotation.y += speed;
+        }
     }
+}
 
     // Render
     renderer.render(scene, camera)
@@ -215,4 +253,4 @@ const tick = () =>
     window.requestAnimationFrame(tick)
 }
 
-tick()
+tick();
