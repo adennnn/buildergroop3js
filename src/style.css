@@ -1,0 +1,43 @@
+*
+{
+    margin: 0;
+    padding: 0;
+
+   
+
+
+
+}   
+
+body{
+
+    background: rgb(58,46,255);
+    background: linear-gradient(91deg, rgba(58,46,255,1) 15%, rgba(235,76,153,1) 91%, rgba(235,184,76,1) 100%);
+}
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+
+.section
+{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    font-family: 'Cabin', sans-serif;
+    color: #ffeded;
+    text-transform: uppercase;
+    font-size: 7vmin;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+section:nth-child(odd)
+{
+    justify-content: flex-end;
+}
