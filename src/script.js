@@ -64,7 +64,7 @@ gltfLoader.load(hammer, (obj) => {
 
  mesh1 = obj.scene.children[0].clone();
  mesh1.position.x = 2;
- mesh1.position.y = 0;
+ mesh1.position.y = 0.5;
  mesh1.rotation.set(Math.PI/2,0,-0.3);
  mesh1.material.color.set(0xffffff);
  scene.add(mesh1);
@@ -90,7 +90,7 @@ scene.add(pointlight);
  * Particles
  */
 // Geometry
-const particlesCount = 2300;
+const particlesCount = 2300
 const positions = new Float32Array(particlesCount * 3);
 
 for(let i = 0; i < particlesCount; i++)
@@ -198,8 +198,8 @@ cursor.y = 0
 
 window.addEventListener('mousemove', (event) =>
 {
-    cursor.x = event.clientX / sizes.width - 0.5
-    cursor.y = event.clientY / sizes.height - 0.5
+    cursor.x = event.clientX / sizes.width - 1
+    cursor.y = event.clientY / sizes.height - 1
 })
 
 /**
@@ -218,8 +218,8 @@ const tick = () =>
     // Animate camera
     camera.position.y = - scrollY / sizes.height * objectsDistance
 
-    const parallaxX = cursor.x * 0.5
-    const parallaxY = - cursor.y * 0.5
+    const parallaxX = cursor.x * 0.3
+    const parallaxY = - cursor.y * 0.3
     cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 5 * deltaTime
     cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 5 * deltaTime
 
