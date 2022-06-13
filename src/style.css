@@ -4,9 +4,9 @@
     padding: 0;
 
    
+    @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
-
-
+    font-family: 'Krona One', sans-serif;
 }   
 
 body{
@@ -29,7 +29,6 @@ body{
     align-items: center;
     height: 100vh;
     position: relative;
-    font-family: 'Cabin', sans-serif;
     color: #ffeded;
     text-transform: uppercase;
     font-size: 7vmin;
