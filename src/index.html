@@ -1,22 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="shortcut icon" type="image/jpg" href="https://www.buildergroop.com/HammerLogo.svg"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
         <!--Replace with your tailwind.css once created-->
         <link href="https://unpkg.com/@tailwindcss/custom-forms/dist/custom-forms.min.css" rel="stylesheet" />
-        <canvas class="webgl"></canvas>
-    <title>Buildergroop</title>
+        <link rel="styleshett3" src="style.css">
+        <canvas class="webgl pointer-events-none"></canvas>
+    <title>buildergroop</title>
 </head>
 <body>
- 
-    <div class="max-w-7xl  mt-20 mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 lg:flex lg:justify-between">
+ <!-- This example requires Tailwind CSS v2.0+ -->
+<nav class=" shadow">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <div class="-ml-2 mr-2 flex items-center md:hidden">
+        
+
+           
+        
+           
+          </button>
+        </div>
+        <div class="flex-shrink-0 flex items-center">
+         <h1 class="text-xl text-white">buildergroop</h1>
+        </div>
+        <div class="hidden md:ml-6 md:flex md:space-x-8">
+          <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+          <a href="#" class="border-indigo-500 text-white inline-flex items-center  cursor-not-allowed px-1 pt-1 border-b-2 text-sm font-medium"> Events </a>
+          <a href="#" class="border-transparent text-white hover:border-gray-300 cursor-not-allowed hover:text-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Perks </a>
+          <a href="#" class="border-transparent text-white hover:border-gray-300  cursor-not-allowed hover:text-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Supporters </a>
+          <a href="https://jobs.buildergroop.com" class="border-transparent text-white hover:border-gray-300 hover:text-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Jobs </a>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</nav>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+    *{
+      font-family: 'Krona One', sans-serif;
+    }
+    </style>
+  
+    <div class="max-w-7xl mx-auto  py-16 px-4 sm:py-24 sm:px-6 lg:px-8 lg:flex lg:justify-between">
       <div class="max-w-xl">
-        <h2 class="text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">Buildergroop</h2>
-        <p class="mt-5 text-xl text-white">The home for ambitious gen-z developers, designers, and entrepreneurs</p>
-        <button type="button" class="py-2.5 z-10 px-5 mt-10 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Join The Community</button>
-        <button type="button" class="py-2.5 z-10 px-5 mt-10 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Find Us On Twitter</button>
+      </a>
+      <h1 class="mt-4  tracking-tight font-extrabold text-white sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl">
+        <span class="md:block mt-72 text-6xl">the home for</span>
+        <span class="text-indigo-400 md:block">genz builders.</span>
+      </h1>
+      <p class="mt-40 text-base text-gray-300 sm:mt-5 md:text-3xl sm:text-xl lg:text-lg xl:text-xl">Buildergroop is where over two thousand ambitious young builders network, build, and grow together.</p>
+        <a href="https://discord.com/invite/builders"><button type="button" class="py-2.5 z-10 px-5 mt-10 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Join The Community</button></a>
+        <a href="https://twitter.com/buildergroop"><button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Find Us On Twitter</button></a>
       </div>
       
           <div class="pointer-events-none absolute inset-y-0 right-0 px-2 flex items-center">
